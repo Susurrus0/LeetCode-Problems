@@ -3,9 +3,8 @@
 
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
-        for element in nums:
-            if element == val:
-                nums.pop(nums.index(element))
+        while val in nums:
+            nums.remove(val)
         return len(nums)
 
 def main():
