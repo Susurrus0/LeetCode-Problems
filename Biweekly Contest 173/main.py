@@ -89,6 +89,10 @@ def main():
     k_4: int = 6
     expected_4: int = -1
 
+    nums_5: list[int] = [5,7,3,12]
+    k_5: int = 18
+    expected_5: int = 3
+
     print("Q2 Test Case #1")
     print(f"Input: nums = {nums_1}, k = {k_1}")
     print(f"Expected output: {expected_1}")
@@ -108,6 +112,12 @@ def main():
     print(f"Input: nums = {nums_4}, k = {k_4}")
     print(f"Expected output: {expected_4}")
     print(f"Actual output  : {solution.minLength(nums_4, k_4)}")
+
+    print("Q2 Test Case #5")
+    print(f"Input: nums = {nums_5}, k = {k_5}")
+    print(f"Expected output: {expected_5}")
+    print(f"Actual output  : {solution.minLength(nums_5, k_5)}")
+
 
 if __name__ == '__main__':
     main()
