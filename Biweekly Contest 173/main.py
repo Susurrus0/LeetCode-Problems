@@ -8,7 +8,7 @@
 
 class Solution:
     def reversePrefix(self, s: str, k: int) -> str:
-        """Q1 function"""
+        """Q1 Function"""
         reversedStr: str = ""
         toReverse: str = s[:k]
         noReversing: str = s[k:]
@@ -20,8 +20,26 @@ class Solution:
 
         return reversedStr
     
-    def minLength(self, nums: List[int], k: int) -> int:
-        pass
+    def minLength(self, nums: list[int], k: int) -> int:
+        """Q2 Function"""
+        minLen: int = 0
+        sumSoFar: int = 0
+
+        # print(f"nums = {nums}")
+        # print(f"k = {k}")
+
+        while sumSoFar < k and len(nums) > 0:
+            sumSoFar += nums.pop(nums.index(max(nums)))
+            minLen += 1
+            # print(f"sumSoFar = {sumSoFar}")
+            # print(f"minLen = {minLen}")
+        
+        if sumSoFar < k:
+            minLen = -1
+
+        # print(f"final minLen = {minLen}")
+
+        return minLen
 
 def main():
     solution = Solution()
@@ -39,17 +57,17 @@ def main():
     # k_3: int = 1
     # expected_3: str = "hey"
 
-    # print("Test Case #1")
+    # print("Q1 Test Case #1")
     # print(f"Input: s = {s_1}, k = {k_1}")
     # print(f"Expected output: {expected_1}")
     # print(f"Actual output  : {solution.reversePrefix(s_1, k_1)}")
 
-    # print("Test Case #2")
+    # print("Q1 Test Case #2")
     # print(f"Input: s = {s_2}, k = {k_2}")
     # print(f"Expected output: {expected_2}")
     # print(f"Actual output  : {solution.reversePrefix(s_2, k_2)}")
 
-    # print("Test Case #3")
+    # print("Q1 Test Case #3")
     # print(f"Input: s = {s_3}, k = {k_3}")
     # print(f"Expected output: {expected_3}")
     # print(f"Actual output  : {solution.reversePrefix(s_3, k_3)}")
@@ -66,6 +84,30 @@ def main():
     nums_3: list[int] = [5,5,4]
     k_3: int = 5
     expected_3: int = 1
+
+    nums_4: list[int] = [1, 2, 1, 1]
+    k_4: int = 6
+    expected_4: int = -1
+
+    print("Q2 Test Case #1")
+    print(f"Input: nums = {nums_1}, k = {k_1}")
+    print(f"Expected output: {expected_1}")
+    print(f"Actual output  : {solution.minLength(nums_1, k_1)}")
+
+    print("Q2 Test Case #2")
+    print(f"Input: nums = {nums_2}, k = {k_2}")
+    print(f"Expected output: {expected_2}")
+    print(f"Actual output  : {solution.minLength(nums_2, k_2)}")
+
+    print("Q2 Test Case #3")
+    print(f"Input: nums = {nums_3}, k = {k_3}")
+    print(f"Expected output: {expected_3}")
+    print(f"Actual output  : {solution.minLength(nums_3, k_3)}")
+
+    print("Q2 Test Case #4")
+    print(f"Input: nums = {nums_4}, k = {k_4}")
+    print(f"Expected output: {expected_4}")
+    print(f"Actual output  : {solution.minLength(nums_4, k_4)}")
 
 if __name__ == '__main__':
     main()
