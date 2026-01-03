@@ -24,13 +24,18 @@ class Solution:
         """Q2 Function"""
         minLen: int = 0
         sumSoFar: int = 0
+        used: list[int] = []
 
         # print(f"nums = {nums}")
         # print(f"k = {k}")
 
         while sumSoFar < k and len(nums) > 0:
-            sumSoFar += nums.pop(nums.index(max(nums)))
-            minLen += 1
+            currentNum: int
+            currentNum = nums.pop(nums.index(max(nums)))
+
+            if currentNum not in used:
+                sumSoFar += currentNum
+                minLen += 1
             # print(f"sumSoFar = {sumSoFar}")
             # print(f"minLen = {minLen}")
         
