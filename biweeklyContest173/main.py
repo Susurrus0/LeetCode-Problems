@@ -7,9 +7,16 @@ class Solution:
         pass
 
 def main():
-    # Your code goes here
+    # Test cases
+    s_1: str = "abcd"
+    k_1: int = 2
     
-    pass
+    s_2: str = "xyz"
+    k_2: int = 3
+
+    s_3: str = "hey"
+    k_3: int = 1
+
 
 if __name__ == '__main__':
     main()
