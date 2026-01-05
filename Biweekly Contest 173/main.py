@@ -26,23 +26,67 @@ class Solution:
         sumSoFar: int = 0
         used: list[int] = []
 
-        # print(f"nums = {nums}")
-        # print(f"k = {k}")
-
-        while sumSoFar < k and len(nums) > 0:
-            currentNum: int
-            currentNum = nums.pop(nums.index(max(nums)))
-
-            if currentNum not in used:
-                sumSoFar += currentNum
-                minLen += 1
-            # print(f"sumSoFar = {sumSoFar}")
-            # print(f"minLen = {minLen}")
+        if len(nums) == 0:
+            minLen = -1
+        elif len(nums) <= 2:
+            if max(nums) >= k:
+                sumSoFar = max(nums)
+                minLen = 1
+            else:
+                for num in nums:
+                    sumSoFar += num
+                    minLen += 1
+        else:
+            if max(nums) >= k:
+                sumSoFar = max(nums)
+                minLen = 1
+            else:
+                sumSoFarReversed: int = 0
+                numsSoFar: list[int] = []
+                minLenReversed: int = 0
+                for num in nums:
+                    print(f"** sumSoFar = {sumSoFar}")
+                    print(f"numsSoFar = {numsSoFar}")
+                    if sumSoFar >= k:
+                        break
+                    if len(numsSoFar) > 2:
+                        sumSoFar -= numsSoFar[0]
+                        numsSoFar.pop(0)
+                        sumSoFar += num
+                        numsSoFar.append(num)
+                        if sum(numsSoFar[1:]) >= k:
+                            numsSoFar.pop(0)
+                            minLen -= 1
+                    else:
+                        numsSoFar.append(num)
+                        sumSoFar += num
+                        minLen += 1
+                    numsSoFar = []
+                for num in nums[::-1]:
+                    print(f"** sumSoFarReversed = {sumSoFarReversed}")
+                    print(f"numsSoFar = {numsSoFar}")
+                    if sumSoFarReversed >= k:
+                        break
+                    if len(numsSoFar) > 2:
+                        sumSoFarReversed -= numsSoFar[0]
+                        numsSoFar.pop(0)
+                        sumSoFarReversed += num
+                        numsSoFar.append(num)
+                        if sum(numsSoFar[1:]) >= k:
+                            numsSoFar.pop(0)
+                            minLen -= 1
+                    else:
+                        numsSoFar.append(num)
+                        sumSoFarReversed += num
+                        minLenReversed += 1
+                    
+                if sumSoFar >= k and minLen <= minLenReversed:
+                    minLen = minLen
+                else:
+                    minLen = minLenReversed
         
         if sumSoFar < k:
             minLen = -1
-
-        # print(f"final minLen = {minLen}")
 
         return minLen
 
