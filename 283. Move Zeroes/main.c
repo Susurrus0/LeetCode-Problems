@@ -7,6 +7,7 @@ https://leetcode.com/problems/move-zeroes
 
 void moveZeroes(int* nums, int numsSize);
 void printArray(int* array, int size);
+int shiftArray(int* array, int size, int index);
 
 int main() {
     int nums_1[] = { 0,1,0,3,12 };
@@ -21,7 +22,9 @@ int main() {
     printf("Expected output:\n");
     printf("    %s\n", expected_1);
     printf("Actual output:\n");
-    printf("    ...\n");
+    nums_1[numsSize_1-1] = shiftArray(nums_1, numsSize_1, 1);
+    printf("    ");
+    printArray(nums_1, numsSize_1);
 
     printf("\n");
 
@@ -35,6 +38,16 @@ int main() {
 }
 
 void moveZeroes(int* nums, int numsSize) {
+    int i = 0; // index of last non-zero array element
+    int zero = numsSize - 1;
+    for (int j = 0; j < numsSize; j++) {
+        if (nums[j] == 0) {
+            // move zero to the end and shift array to the left
+        } else {
+            i = j;
+        }
+    }
+
     return;
 }
 
@@ -47,4 +60,17 @@ void printArray(int* array, int size) {
         }
     }
     printf("]");
+}
+
+int shiftArray(int* array, int size, int index) {
+    int cache = 0;
+
+    if (array == NULL || index >= size || index < 0)
+        return 0;
+
+    cache = array[index];
+    for (int i = index; i < size - 1; i++) {
+        array[i] = array[i+1];
+    }
+    return cache;
 }
