@@ -41,6 +41,7 @@ int main() {
 }
 
 void moveZeroes(int* nums, int numsSize) {
+    // TODO-1 Adjust moveZeroes() to use the two-pointer approach
     int i = 0;
     int zeroCount = 0;
     while (i < numsSize - zeroCount) {
