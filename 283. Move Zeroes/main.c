@@ -22,7 +22,7 @@ int main() {
     printf("Expected output:\n");
     printf("    %s\n", expected_1);
     printf("Actual output:\n");
-    nums_1[numsSize_1-1] = shiftArray(nums_1, numsSize_1, 1);
+    moveZeroes(nums_1, numsSize_1);
     printf("    ");
     printArray(nums_1, numsSize_1);
 
@@ -32,22 +32,26 @@ int main() {
     printf("Expected output:\n");
     printf("    %s\n", expected_2);
     printf("Expected output:\n");
-    printf("    ...\n");
+    moveZeroes(nums_2, numsSize_2);
+    printf("    ");
+    printArray(nums_2, numsSize_2);
+    printf("\n");
 
     return 0;
 }
 
 void moveZeroes(int* nums, int numsSize) {
-    int i = 0; // index of last non-zero array element
-    int zero = numsSize - 1;
-    for (int j = 0; j < numsSize; j++) {
-        if (nums[j] == 0) {
-            // move zero to the end and shift array to the left
+    int i = 0;
+    int zeroCount = 0;
+    while (i < numsSize - zeroCount) {
+        if (nums[i] == 0) {
+            int temp = shiftArray(nums, numsSize, i);
+            nums[numsSize - zeroCount - 1] = 0;
+            zeroCount++;
         } else {
-            i = j;
+            i++;
         }
     }
-
     return;
 }
 
