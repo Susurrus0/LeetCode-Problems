@@ -49,12 +49,15 @@ void printArray(int* array, int size) {
 }
 
 int removeDuplicates(int* nums, int numsSize) {
-    int uniques = 0;
+    if (numsSize < 1)
+        return 0;
+
+    int uniques = 1;
     int lastUnique = nums[0];
-    int i = 0;
-    int j = 0; // index of last unique num
+    int i = 1;
+    int j = 1; // index of last unique num
     for (; i < numsSize; i++) {
-        if (nums[i] == lastUnique) {
+        if (nums[i] != lastUnique) {
             nums[j] = nums[i];
             j++;
             uniques++;
