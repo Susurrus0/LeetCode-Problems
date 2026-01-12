@@ -7,7 +7,7 @@ https://leetcode.com/problems/move-zeroes
 
 void moveZeroes(int* nums, int numsSize);
 void printArray(int* array, int size);
-int shiftArray(int* array, int size, int index);
+// int shiftArray(int* array, int size, int index);
 
 int main() {
     int nums_1[] = { 0,1,0,3,12 };
@@ -40,21 +40,21 @@ int main() {
     return 0;
 }
 
-void moveZeroes(int* nums, int numsSize) {
-    // TODO-1 Adjust moveZeroes() to use the two-pointer approach
-    int i = 0;
-    int zeroCount = 0;
-    while (i < numsSize - zeroCount) {
-        if (nums[i] == 0) {
-            int temp = shiftArray(nums, numsSize, i);
-            nums[numsSize - zeroCount - 1] = 0;
-            zeroCount++;
-        } else {
-            i++;
-        }
-    }
-    return;
-}
+// void moveZeroes(int* nums, int numsSize) {
+//    // Version 1 - slower
+//     int i = 0;
+//     int zeroCount = 0;
+//     while (i < numsSize - zeroCount) {
+//         if (nums[i] == 0) {
+//             int temp = shiftArray(nums, numsSize, i);
+//             nums[numsSize - zeroCount - 1] = 0;
+//             zeroCount++;
+//         } else {
+//             i++;
+//         }
+//     }
+//     return;
+// }
 
 void printArray(int* array, int size) {
     printf("[");
@@ -67,15 +67,30 @@ void printArray(int* array, int size) {
     printf("]");
 }
 
-int shiftArray(int* array, int size, int index) {
-    int cache = 0;
+// int shiftArray(int* array, int size, int index) {
+//     int cache = 0;
 
-    if (array == NULL || index >= size || index < 0)
-        return 0;
+//     if (array == NULL || index >= size || index < 0)
+//         return 0;
 
-    cache = array[index];
-    for (int i = index; i < size - 1; i++) {
-        array[i] = array[i+1];
+//     cache = array[index];
+//     for (int i = index; i < size - 1; i++) {
+//         array[i] = array[i+1];
+//     }
+//     return cache;
+// }
+
+void moveZeroes(int* nums, int numsSize) {
+    // Version 2 - faster
+    int i = 0;
+    int j = 0; // index of last non-zero num
+    for (; i < numsSize; i++) {
+        if (nums[i] != 0) {
+            nums[j] = nums[i];
+            j++;
+        }
     }
-    return cache;
+    for (; j < numsSize; j++) {
+        nums[j] = 0;
+    }
 }
