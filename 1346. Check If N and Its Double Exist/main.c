@@ -17,6 +17,14 @@ int main() {
     int arrLen_2 = sizeof(arr_2) / sizeof(arr_2[0]);
     bool expected_2 = false;
 
+    int arr_3[] = { 7,1,14,11 };
+    int arrLen_3 = sizeof(arr_3) / sizeof(arr_3[0]);
+    bool expected_3 = true;
+
+    int arr_4[] = { 0,-2,2 };
+    int arrLen_4 = sizeof(arr_4) / sizeof(arr_4[0]);
+    bool expected_4 = false;
+
     printf("Test Case #1\n");
     printf("Expected output:\n");
     printf("    %s\n", expected_1 ? "true" : "false");
@@ -31,15 +39,35 @@ int main() {
     printf("Actual output:\n");
     printf("    %s\n", checkIfExist(arr_2, arrLen_2) ? "true" : "false");
 
+    printf("\n");
+
+    printf("Test Case #3\n");
+    printf("Expected output:\n");
+    printf("    %s\n", expected_3 ? "true" : "false");
+    printf("Actual output:\n");
+    printf("    %s\n", checkIfExist(arr_3, arrLen_3) ? "true" : "false");
+
+    printf("\n");
+
+    printf("Test Case #4\n");
+    printf("Expected output:\n");
+    printf("    %s\n", expected_4 ? "true" : "false");
+    printf("Actual output:\n");
+    printf("    %s\n", checkIfExist(arr_4, arrLen_4) ? "true" : "false");
+
     return 0;
 }
 
 bool checkIfExist(int* arr, int arrSize) {
-    int i = 0, j = 0;
-
-    for (; i < arrSize; i++) {
+    for (int i = 0; i < arrSize; i++) {
+        int j = 0;
+        // printf("i = %d\n", i);
+        // printf("arr[%d] = %d\n", i, arr[i]);
         for (; j < arrSize; j++) {
-            if (arr[j] * 2 == arr[i])
+            // printf("\tj = %d\n", j);
+            // printf("\tarr[%d] = %d\n", j, arr[j]);
+            // printf("\t\t%d * 2 = %d\n", j, j * 2);
+            if (arr[i] == 2 * arr[j] && i != j)
                 return true;
         }
     }
