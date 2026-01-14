@@ -47,5 +47,21 @@ int main() {
 }
 
 bool validMountainArray(int* arr, int arrSize) {
-    return false;
+    if (arrSize < 3)
+        return false;
+
+    bool mountain = false;
+
+    if (arr[1] > arr[0]) {
+        int i = 1;
+        while (arr[i+1] > arr[i] && i + 1 < arrSize)
+            i++;
+        while (arr[i+1] < arr[i] && i + 1 < arrSize)
+            i++;
+        if (i == arrSize - 1)
+            mountain = true;
+    } else {
+        mountain = false;
+    }
+    return mountain;
 }
