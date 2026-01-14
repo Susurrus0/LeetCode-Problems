@@ -3,9 +3,15 @@
 
 class Solution:
     def replaceElements(self, arr: list[int]) -> list[int]:
-        for i in range(len(arr)-1):
-            arr[i] = max(arr[i+1:])
-        arr[len(arr) - 1] = -1
+        n = len(arr)
+        maxRight = -1
+
+        # Go from right to left for better efficiency
+        for i in range(n - 1, -1, -1):
+            current = arr[i]
+            arr[i] = maxRight
+            maxRight = max(maxRight, current)
+        
         return arr
 
 
