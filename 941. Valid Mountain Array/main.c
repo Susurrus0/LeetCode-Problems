@@ -52,12 +52,14 @@ bool validMountainArray(int* arr, int arrSize) {
 
     bool mountain = false;
 
-    if (arr[1] > arr[0]) {
+    if (arr[1] > arr[0] && arr[arrSize-1] < arr[arrSize-2]) {
         int i = 1;
-        while (arr[i+1] > arr[i] && i + 1 < arrSize)
+        while (i + 1 < arrSize && arr[i+1] > arr[i])
             i++;
-        while (arr[i+1] < arr[i] && i + 1 < arrSize)
+        // printf("** i = %d\n", i);
+        while (i + 1 < arrSize && arr[i+1] < arr[i])
             i++;
+        // printf("** i = %d\n", i);
         if (i == arrSize - 1)
             mountain = true;
     } else {
