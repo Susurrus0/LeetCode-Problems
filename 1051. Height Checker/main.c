@@ -66,9 +66,9 @@ int heightChecker(int* heights, int heightsSize) {
         expectedHeights[i] = heights[i];
     }
 
-    for (int i = 0; i < heightsSize; i++) {
-        for (int j = i; j < heightsSize; j++) {
-            if (j + 1 < heightsSize && expectedHeights[j] > expectedHeights[j + 1]) {
+    for (int i = 0; i < heightsSize - 1; i++) {
+        for (int j = 0; j < heightsSize - 1; j++) {
+            if (expectedHeights[j] > expectedHeights[j + 1]) {
                 int temp = expectedHeights[j];
                 expectedHeights[j] = expectedHeights[j + 1];
                 expectedHeights[j + 1] = temp;
