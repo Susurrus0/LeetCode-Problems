@@ -41,7 +41,18 @@ int main() {
 }
 
 int removeElement(int* nums, int numsSize, int val) {
-    return 0;
+    int remaining = numsSize;
+    int end = numsSize - 1;
+
+    for (int i = 0; i < numsSize; i++) {
+        if (nums[i] == val) {
+            nums[i] = nums[end];
+            nums[end] = 0;
+            end--;
+            i--;
+        }
+    }
+    return remaining;
 }
 
 void printArray(int* array, int size) {
