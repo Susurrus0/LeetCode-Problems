@@ -25,6 +25,10 @@ int main() {
     int numsLen_4 = sizeof(nums_4) / sizeof(nums_4[0]);
     int expected_4 = 2;
 
+    int nums_5[] = { 1,2,-2147483648 };
+    int numsLen_5 = sizeof(nums_5) / sizeof(nums_5[0]);
+    int expected_5 = -2147483648;
+
     printf("--- Test Case #1 ---\n");
     printf("Expected output:\n");
     printf("\t%i\n", expected_1);
@@ -55,19 +59,38 @@ int main() {
     printf("Actual output:\n");
     printf("\t%i\n", thirdMax(nums_4, numsLen_4));
 
+    printf("\n");
+
+    printf("--- Test Case #5 ---\n");
+    printf("Expected output:\n");
+    printf("\t%i\n", expected_5);
+    printf("Actual output:\n");
+    printf("\t%i\n", thirdMax(nums_5, numsLen_5));
+
     return 0;
 }
 
 int thirdMax(int* nums, int numsSize) {
     int max1 = nums[0];
     int max2 = 0, max3 = 0;
+    int uniqueNums = 0;
+    int lastNum = 0;
+
+    for (int i = 0; i < numsSize; i++) {
+        if (nums[i] != lastNum) {
+            uniqueNums++;
+            lastNum = nums[i];
+        }
+    }
+
+    printf("** uniqueNums = %i\n", uniqueNums);
 
     for (int i = 1; i < numsSize; i++) {
         if (nums[i] > max1)
             max1 = nums[i];
     }
 
-    if (numsSize < 3)
+    if (uniqueNums < 3)
         return max1;
 
     for (int i = 0; i < numsSize; i++) {
