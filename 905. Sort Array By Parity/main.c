@@ -7,13 +7,52 @@ https://leetcode.com/problems/sort-array-by-parity
 #include <stdlib.h>
 
 int* sortArrayByParity(int* nums, int numsSize, int* returnSize);
+void printArray(int* array, int size);
 
 int main() {
-    // Your code goes here
-    
+    int nums_1[] = { 3,1,2,4 };
+    int numsLen_1 = sizeof(nums_1) / sizeof(nums_1[0]);
+    char expected_1[] = "[2,4,3,1]";
+
+    int nums_2[] = { 0 };
+    int numsLen_2 = sizeof(nums_2) / sizeof(nums_2[0]);
+    char expected_2 = "[0]";
+
+    printf("Test Case #1\n");
+    printf("Expected output:\n");
+    printf("\t%s\n", expected_1);
+    printf("Actual output:\n");
+    printf("\t");
+    printArray(sortArrayByParity(nums_1, numsLen_1, numsLen_1), numsLen_1);
+
+    printf("\n\n");
+
+    printf("Test Case #2\n");
+    printf("Expected output:\n");
+    printf("\t%s\n", expected_2);
+    printf("Actual output:\n");
+    printf("\t");
+    printArray(sortArrayByParity(nums_2, numsLen_2, numsLen_2), numsLen_2);
+
+    print("\n");
+
     return 0;
 }
 
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
 int* sortArrayByParity(int* nums, int numsSize, int* returnSize) {
-    
+    int* result = (int*) malloc(numsSize * sizeof(int));
+}
+
+void printArray(int* array, int size) {
+    printf("[");
+    for (int i = 0; i < size; i++) {
+        printf("%d", array[i]);
+        if (i + 1 < size) {
+            printf(",");
+        }
+    }
+    printf("]");
 }
