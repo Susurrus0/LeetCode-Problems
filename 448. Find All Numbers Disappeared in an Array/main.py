@@ -3,7 +3,14 @@
 
 class Solution:
     def findDisappearedNumbers(self, nums: list[int]) -> list[int]:
-        pass
+        n: int = len(nums)
+        disapperedNums = set()
+
+        for i in range(1, n+1):
+            if i not in nums and i not in disapperedNums:
+                disapperedNums.add(i)
+        
+        return list(disapperedNums)
 
 
 def main():
