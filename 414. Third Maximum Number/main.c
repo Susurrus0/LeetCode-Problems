@@ -4,6 +4,7 @@ https://leetcode.com/problems/third-maximum-number
 *****************************************************/
 
 #include <stdio.h>
+#include <limits.h>
 
 int thirdMax(int* nums, int numsSize);
 
@@ -72,36 +73,25 @@ int main() {
 
 int thirdMax(int* nums, int numsSize) {
     int max1 = nums[0];
-    int max2 = 0, max3 = 0;
-    int uniqueNums = 0;
-    int lastNum = 0;
+    long max2 = LONG_MIN, max3 = LONG_MIN;
 
-    for (int i = 0; i < numsSize; i++) {
-        if (nums[i] != lastNum) {
-            uniqueNums++;
-            lastNum = nums[i];
+    for (int i = 1; i < numsSize; i++) {
+        if (nums[i] > max1) {
+            max3 = max2;
+            max2 = max1;
+            max1 = nums[i];
+        }
+        else if (nums[i] > max2 && nums[i] < max1) {
+            max3 = max2;
+            max2 = nums[i];
+        }
+        else if (nums[i] > max3 && nums[i] < max2) {
+            max3 = nums[i];
         }
     }
 
-    printf("** uniqueNums = %i\n", uniqueNums);
-
-    for (int i = 1; i < numsSize; i++) {
-        if (nums[i] > max1)
-            max1 = nums[i];
-    }
-
-    if (uniqueNums < 3)
+    if (max3 == LONG_MIN)
         return max1;
-
-    for (int i = 0; i < numsSize; i++) {
-        if (nums[i] != max1 && nums[i] > max2)
-            max2 = nums[i];
-    }
-
-    for (int i = 0; i < numsSize; i++) {
-        if (nums[i] != max1 && nums[i] != max2 && nums[i] > max3)
-            max3 = nums[i];
-    }
 
     return max3;
 }
