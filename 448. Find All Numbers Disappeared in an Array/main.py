@@ -7,7 +7,7 @@ class Solution:
         disapperedNums = set()
 
         for i in range(1, n+1):
-            if i not in nums and i not in disapperedNums:
+            if i not in nums:
                 disapperedNums.add(i)
         
         return list(disapperedNums)
