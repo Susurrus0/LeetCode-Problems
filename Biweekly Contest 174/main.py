@@ -3,7 +3,29 @@
 
 class Solution:
     def bestTower(self, towers: list[list[int]], center: list[int], radius: int) -> list[int]:
-        pass
+        """Q1 function"""
+        def manhattanDistance(center: list[int], tower: list[int]):
+            # The Manhattan Distance between two cells (xi, yi) and (xj, yj) is |xi - xj| + |yi - yj|
+            return abs(center[0] - tower[0]) + abs(center[1] - tower[1])
+
+        goodTowers: list[list[int]] = []
+
+        for tower in towers:
+            distFromCenter: int = manhattanDistance(center, tower)
+            if distFromCenter <= radius:
+                goodTowers.append(tower)
+
+        if len(goodTowers) < 1:
+            return [-1, -1]
+
+        bestTower: list[int] = [0, 0, 0]
+
+        for goodTower in goodTowers:
+            if goodTower[2] > bestTower[2]:
+                bestTower = goodTower
+
+        return bestTower[:2]
+
 
 def main():
     # Q1 Test Cases
