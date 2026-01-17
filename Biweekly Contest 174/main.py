@@ -4,6 +4,7 @@
 class Solution:
     def bestTower(self, towers: list[list[int]], center: list[int], radius: int) -> list[int]:
         """Q1 function"""
+        # 998 / 999 testcases passed
         def manhattanDistance(center: list[int], tower: list[int]):
             # The Manhattan Distance between two cells (xi, yi) and (xj, yj) is |xi - xj| + |yi - yj|
             return abs(center[0] - tower[0]) + abs(center[1] - tower[1])
@@ -22,6 +23,8 @@ class Solution:
 
         for goodTower in goodTowers:
             if goodTower[2] > bestTower[2]:
+                bestTower = goodTower
+            elif goodTower[2] == bestTower[2] and goodTower[:2] < bestTower[:2]:
                 bestTower = goodTower
 
         return bestTower[:2]
