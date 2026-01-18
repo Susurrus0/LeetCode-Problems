@@ -2,15 +2,9 @@
 # https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array
 
 class Solution:
-    def findDisappearedNumbers(self, nums: list[int]) -> list[int]:
-        n: int = len(nums)
-        disapperedNums = set()
-
-        for i in range(1, n+1):
-            if i not in nums:
-                disapperedNums.add(i)
-        
-        return list(disapperedNums)
+    def findDisappearedNumbers(self, nums):
+        numsSet = set(nums)
+        return [i for i in range(1, len(nums)+1) if i not in numsSet]
 
 
 def main():
