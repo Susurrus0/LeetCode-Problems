@@ -2,11 +2,15 @@
 # https://leetcode.com/problems/design-linked-list
 
 class MyLinkedList:
+    class _LinkedNode:
+        def __init__(self, val: int = None, next: MyLinkedList._LinkedNode = None):
+            self.val: int = val
+            self.next: MyLinkedList._LinkedNode = next
+
+
     def __init__(self):
-        self.head = self
-        self.nodes: list[MyLinkedList] = [self]
-        self.val: int = None
-        self.next: MyLinkedList = None
+        self.head = None
+        self.size: int = 0
 
 
     def get(self, index: int) -> int:
@@ -19,41 +23,42 @@ class MyLinkedList:
 
 
     def addAtHead(self, val: int) -> None:
-        newNode: MyLinkedList = MyLinkedList()
-        newNode.val = val
+        newNode: MyLinkedList._LinkedNode = self._LinkedNode(val)
         newNode.next = self.head
         self.head = newNode
+        self.size += 1
 
 
     def addAtTail(self, val: int) -> None:
-        newNode: MyLinkedList = MyLinkedList()
-        newNode.val = val
-        node: MyLinkedList = self.head
-        while node.next is not None:
-            node = node.next
-        node.next = newNode
+        newNode: MyLinkedList._LinkedNode = self._LinkedNode(val)
+        tail: MyLinkedList._LinkedNode = self.head
+        while tail.next is not None:
+            tail = tail.next
+        tail.next = newNode
+        self.size += 1
 
 
     def addAtIndex(self, index: int, val: int) -> None:
-        node: MyLinkedList = self.head
-        newNode: MyLinkedList = MyLinkedList()
-        newNode.val = val
+        node: MyLinkedList._LinkedNode = self.head
+        newNode: MyLinkedList._LinkedNode = self._LinkedNode(val)
 
         for i in range(index):
             node = node.next
         
         node.next = newNode
         newNode.next = node.next.next
+        self.size += 1
 
 
     def deleteAtIndex(self, index: int) -> None:
-        node: MyLinkedList = self.head
+        node: MyLinkedList._LinkedNode = self.head
         for i in range(index):
             if node is None:
                 return
             node = node.next
         
         node.next = node.next.next
+        self.size -= 1
 
 
 # Your MyLinkedList object will be instantiated and called as such:
