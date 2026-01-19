@@ -65,13 +65,19 @@ class MyLinkedList:
 
 
     def deleteAtIndex(self, index: int) -> None:
-        node: MyLinkedList._LinkedNode = self.head
-        for i in range(index - 1):
-            if node is None:
-                return
-            node = node.next
+        if index >= self.size or index < 0:
+            return
+        if index == 0:
+            self.head = self.head.next
+            self.size -= 1
+            return
         
-        node.next = node.next.next
+        prev: MyLinkedList._LinkedNode = self.head
+        for i in range(index - 1):
+            prev = prev.next
+        
+        prev.next = prev.next.next
+        
         self.size -= 1
 
 
