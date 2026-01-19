@@ -14,12 +14,13 @@ class MyLinkedList:
 
 
     def get(self, index: int) -> int:
-        node: MyLinkedList = self.head
-        for i in range(index+1):
-            if node is None:
-                return -1
-            node = node.next
-        return node.val
+        if index >= self.size or index < 0:
+            return -1
+        else:
+            node: MyLinkedList._LinkedNode = self.head
+            for i in range(index):
+                node = node.next
+            return node.val
 
 
     def addAtHead(self, val: int) -> None:
@@ -30,29 +31,42 @@ class MyLinkedList:
 
 
     def addAtTail(self, val: int) -> None:
-        newNode: MyLinkedList._LinkedNode = self._LinkedNode(val)
-        tail: MyLinkedList._LinkedNode = self.head
-        while tail.next is not None:
-            tail = tail.next
-        tail.next = newNode
-        self.size += 1
+        if self.size < 1:
+            self.addAtHead(val)
+        else:
+            newNode: MyLinkedList._LinkedNode = self._LinkedNode(val)
+            tail: MyLinkedList._LinkedNode = self.head
+            while tail.next is not None:
+                tail = tail.next
+            tail.next = newNode
+            self.size += 1
 
 
     def addAtIndex(self, index: int, val: int) -> None:
-        node: MyLinkedList._LinkedNode = self.head
-        newNode: MyLinkedList._LinkedNode = self._LinkedNode(val)
+        if index > self.size or index < 0:
+            return
+        elif index == 0:
+            self.addAtHead(val)
+        elif index == self.size:
+            self.addAtTail(val)
+        else:
+            prev: MyLinkedList._LinkedNode = self.head
+            next: MyLinkedList._LinkedNode = self.head.next
+            newNode: MyLinkedList._LinkedNode = self._LinkedNode(val)
 
-        for i in range(index):
-            node = node.next
-        
-        node.next = newNode
-        newNode.next = node.next.next
-        self.size += 1
+            for i in range(index - 1):
+                prev = prev.next
+                next = next.next
+                        
+            newNode.next = next
+            prev.next = newNode
+
+            self.size += 1
 
 
     def deleteAtIndex(self, index: int) -> None:
         node: MyLinkedList._LinkedNode = self.head
-        for i in range(index):
+        for i in range(index - 1):
             if node is None:
                 return
             node = node.next
