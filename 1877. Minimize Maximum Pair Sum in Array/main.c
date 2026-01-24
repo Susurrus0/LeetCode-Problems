@@ -17,6 +17,7 @@ int main() {
     int expected_2 = 8;
 
     int nums_3[] = {4,1,5,1,2,5,1,5,5,4};
+                //  1,1,1,2,4,4,5,5,5,5
     int numsLen_3 = sizeof(nums_3) / sizeof(nums_3[0]);
     int expected_3 = 8;
 
@@ -51,8 +52,9 @@ int minPairSum(int* nums, int numsSize) {
     bubbleSort(nums, numsSize);
 
     for (int i = 0; i < numsSize; i++) {
-        if (nums[i] + nums[numsSize - 1] > maxPair)
-            maxPair = nums[i] + nums[numsSize - 1 - i];
+        int pair = nums[i] + nums[numsSize - 1 - i];
+        if (pair > maxPair)
+            maxPair = pair;
     }
 
     return maxPair;
