@@ -2,9 +2,11 @@
 // https://leetcode.com/problems/minimize-maximum-pair-sum-in-array
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int minPairSum(int* nums, int numsSize);
-void bubbleSort(int* nums, int numsSize);
+// void bubbleSort(int* nums, int numsSize);
+int comp(const void* a, const void* b);
 
 int main() {
     // Test cases
@@ -49,7 +51,8 @@ int main() {
 int minPairSum(int* nums, int numsSize) {
     int maxPair = 0;
 
-    bubbleSort(nums, numsSize);
+    // bubbleSort(nums, numsSize);
+    qsort(nums, numsSize, sizeof(int), comp);
 
     for (int i = 0; i < numsSize; i++) {
         int pair = nums[i] + nums[numsSize - 1 - i];
@@ -60,15 +63,21 @@ int minPairSum(int* nums, int numsSize) {
     return maxPair;
 }
 
-void bubbleSort(int* nums, int numsSize) {
-    for (int i = 0; i < numsSize; i++) {
-        int temp = 0;
-        for (int j = 0; j < numsSize - i; j++) {
-            if (j + 1 < numsSize && nums[j] > nums[j+1]) {
-                temp = nums[j+1];
-                nums[j+1] = nums[j];
-                nums[j] = temp;
-            }
-        }
-    }
+int comp(const void* a, const void* b) {
+  	
+  	// If a is smaller, positive value will be returned
+    return (*(int*)a - *(int*)b);
 }
+
+// void bubbleSort(int* nums, int numsSize) {
+//     for (int i = 0; i < numsSize; i++) {
+//         int temp = 0;
+//         for (int j = 0; j < numsSize - i; j++) {
+//             if (j + 1 < numsSize && nums[j] > nums[j+1]) {
+//                 temp = nums[j+1];
+//                 nums[j+1] = nums[j];
+//                 nums[j] = temp;
+//             }
+//         }
+//     }
+// }
