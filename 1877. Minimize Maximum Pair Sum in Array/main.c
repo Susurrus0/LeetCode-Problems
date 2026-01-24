@@ -16,6 +16,10 @@ int main() {
     int numsLen_2 = sizeof(nums_2) / sizeof(nums_2[0]);
     int expected_2 = 8;
 
+    int nums_3[] = {4,1,5,1,2,5,1,5,5,4};
+    int numsLen_3 = sizeof(nums_3) / sizeof(nums_3[0]);
+    int expected_3 = 8;
+
     printf("--- Test Case #1 ---\n");
     printf("Expected output:\n");
     printf("\t%i\n", expected_1);
@@ -29,7 +33,15 @@ int main() {
     printf("\t%i\n", expected_2);
     printf("Actual output:\n");
     printf("\t%i\n", minPairSum(nums_2, numsLen_2));
-    
+
+    printf("\n");
+
+    printf("--- Test Case #3 ---\n");
+    printf("Expected output:\n");
+    printf("\t%i\n", expected_3);
+    printf("Actual output:\n");
+    printf("\t%i\n", minPairSum(nums_3, numsLen_3));
+
     return 0;
 }
 
