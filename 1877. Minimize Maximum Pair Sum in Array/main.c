@@ -34,13 +34,15 @@ int main() {
 }
 
 int minPairSum(int* nums, int numsSize) {
-    int maxPair;
-    // TODO 1. Sort nums either in either non-decreasing or non-increasing order
-    bubbleSort(nums, numsSize);
-    // TODO 2. Put the first and last nums into pairs
-    
+    int maxPair = 0;
 
-    // TODO 3. Return the largest minimized pair
+    bubbleSort(nums, numsSize);
+
+    for (int i = 0; i < numsSize; i++) {
+        if (nums[i] + nums[numsSize - 1] > maxPair)
+            maxPair = nums[i] + nums[numsSize - 1 - i];
+    }
+
     return maxPair;
 }
 
