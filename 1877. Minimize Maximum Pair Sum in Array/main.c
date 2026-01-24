@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 int minPairSum(int* nums, int numsSize);
+void bubbleSort(int* nums, int numsSize);
 
 int main() {
     // Test cases
@@ -33,5 +34,25 @@ int main() {
 }
 
 int minPairSum(int* nums, int numsSize) {
-    return 0;
+    int maxPair;
+    // TODO 1. Sort nums either in either non-decreasing or non-increasing order
+    bubbleSort(nums, numsSize);
+    // TODO 2. Put the first and last nums into pairs
+    
+
+    // TODO 3. Return the largest minimized pair
+    return maxPair;
+}
+
+void bubbleSort(int* nums, int numsSize) {
+    for (int i = 0; i < numsSize; i++) {
+        int temp = 0;
+        for (int j = 0; j < numsSize - i; j++) {
+            if (j + 1 < numsSize && nums[j] > nums[j+1]) {
+                temp = nums[j+1];
+                nums[j+1] = nums[j];
+                nums[j] = temp;
+            }
+        }
+    }
 }
