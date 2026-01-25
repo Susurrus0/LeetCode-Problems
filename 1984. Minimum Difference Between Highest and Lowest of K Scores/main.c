@@ -2,8 +2,10 @@
 // https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int minimumDifference(int* nums, int numsSize, int k);
+int comp(const void* a, const void* b);
 
 int main() {
     // Test cases
@@ -35,5 +37,20 @@ int main() {
 }
 
 int minimumDifference(int* nums, int numsSize, int k) {
-    return 0;
+    // Option 1 - sort nums, then take k last elements
+    // Option 2 - two-pointer approach, probably more efficient?
+    int minDiff = 0;
+
+    qsort(nums, numsSize, sizeof(int), comp);
+    int num1 = nums[numsSize - 1];
+    int num2 = nums[numsSize - k];
+    minDiff = num1 - num2;
+
+    return minDiff;
+}
+
+int comp(const void* a, const void* b) {
+  	
+  	// If a is smaller, positive value will be returned
+    return (*(int*)a - *(int*)b);
 }
