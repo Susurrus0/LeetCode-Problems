@@ -50,15 +50,16 @@ int main() {
 }
 
 int minimumDifference(int* nums, int numsSize, int k) {
-    // Option 1 - sort nums, then take k last elements
-    // Option 2 - two-pointer approach, probably more efficient?
-    int minDiff = 0;
-
     qsort(nums, numsSize, sizeof(int), comp);
-    int num1 = nums[numsSize - 1];
-    int num2 = nums[numsSize - k];
-    minDiff = num1 - num2;
 
+    int minDiff = -1;
+
+    for (int i = 0; i + k - 1 < numsSize; i++) {
+        int j = i + k - 1;
+        int diff = nums[j] - nums[i];
+        if (diff < minDiff || minDiff < 0)
+            minDiff = diff;
+    }
     return minDiff;
 }
 
