@@ -42,7 +42,7 @@ def main():
     print("--- Test case 3 ---")
     print(f"head_3 = {head_3}, pos_3 = {pos_3}")
     print(f"Expected ouput:\n\t{expected_3}")
-    print(f"Actual output:\n\t{solution.hasCycle(head_2)}")
+    print(f"Actual output:\n\t{solution.hasCycle(head_3)}")
 
     pass
 
