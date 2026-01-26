@@ -15,15 +15,15 @@ class Solution:
 
 def main():
     # Test cases
-    head_1: list[int] = [3,2,0,-4]
+    head_1: ListNode = ListNode(3, ListNode(2, ListNode(0, ListNode(-4))))
     pos_1: int = 1
     expected_1: bool = True
 
-    head_2: list[int] = [1,2]
+    head_2: ListNode = ListNode(1, ListNode(2))
     pos_2: int = 0
     expected_2: bool = True
 
-    head_3: list[int] = [1]
+    head_3: ListNode = ListNode(1)
     pos_3: int = -1
     expected_3: bool = False
 
@@ -44,7 +44,6 @@ def main():
     print(f"Expected ouput:\n\t{expected_3}")
     print(f"Actual output:\n\t{solution.hasCycle(head_3)}")
 
-    pass
 
 if __name__ == '__main__':
     main()
