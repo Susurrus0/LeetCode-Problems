@@ -3,7 +3,23 @@
 
 class Solution:
     def minimumAbsDifference(self, arr: list[int]) -> list[list[int]]:
-        pass
+        minDiff: int = None
+        minDiffPairs: list[list[int]] = []
+        arr.sort()
+
+        for j in range(1, len(arr)):
+            i: int = j - 1
+            diff: int = arr[j] - arr[i]
+            if minDiff is None or diff < minDiff:
+                minDiff = diff
+        
+        for j in range(1, len(arr)):
+            i: int = j - 1
+            diff: int = arr[j] - arr[i]
+            if diff <= minDiff:
+                minDiffPairs.append([arr[i], arr[j]])
+        
+        return minDiffPairs
 
 
 def main():
@@ -32,7 +48,7 @@ def main():
     print("--- Test case 3 ---")
     print(f"arr_3 = {arr_3}")
     print(f"Expected ouput:\n\t{expected_3}")
-    print(f"Actual output:\n\t{solution.minimumAbsDifference(arr_2)}")
+    print(f"Actual output:\n\t{solution.minimumAbsDifference(arr_3)}")
     
 
 if __name__ == '__main__':
